@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-
-import Avatar from "./components/Avatar";
-
-import PartList from "./components/PartList";
+import { useState, useEffect } from "react";
 import "./App.css";
+import Avatar from "./components/Avatar";
+import { PartList } from "./components/PartList";
 
 const total = {
   body: 17,
@@ -18,39 +16,23 @@ const total = {
   clothing3: 9,
 };
 
-const partsArray = Object.entries(total).map(([partName, amount]) => ({
-  partName,
-  amount,
-}));
-
 function App() {
   const [body, setBody] = useState(1);
-
+  const [eyes, setEyes] = useState(1);
+  const [eyebrows, setEyebrow] = useState(1);
+  const [hair, setHair] = useState(1);
   const [clothing1, setClothing1] = useState(1);
   const [clothing2, setClothing2] = useState(1);
   const [clothing3, setClothing3] = useState(1);
-
   const [mouth, setMouth] = useState(1);
-  const [nose, setNose] = useState(1);
-  const [eyes, setEyes] = useState(1);
-  const [eyebrows, setEyebrows] = useState(1);
-  const [hair, setHair] = useState(1);
-  const [facial, setFacial] = useState(1);
-
-  const [earrings, setEarrings] = useState(1);
   const [glasses, setGlasses] = useState(1);
-  const [hat, setHat] = useState(1);
-  const [neckwear, setNeckwear] = useState(1);
-
-  console.log(eval("body"));
-
   const characterRandomize = () => {
     setBody(Math.floor(Math.random() * total.body));
     setEyes(Math.floor(Math.random() * total.eyes));
-    setEyebrows(Math.floor(Math.random() * total.eyebrows));
+    setEyebrow(Math.floor(Math.random() * total.eyebrows));
     setHair(Math.floor(Math.random() * total.hair));
     setMouth(Math.floor(Math.random() * total.mouth));
-    setNose(Math.floor(Math.random() * total.nose));
+    setMouth(Math.floor(Math.random() * total.mouth));
     setGlasses(Math.floor(Math.random() * total.glasses));
     setClothing1(Math.floor(Math.random() * total.clothing1));
     setClothing2(Math.floor(Math.random() * total.clothing2));
@@ -71,64 +53,104 @@ function App() {
         <div>
           <Avatar
             body={body}
+            eyes={eyes}
+            hair={hair}
             clothing1={clothing1}
             clothing2={clothing2}
             clothing3={clothing3}
             mouth={mouth}
-            nose={nose}
-            eyes={eyes}
-            eyebrows={eyebrows}
-            hair={hair}
-            facial={facial}
-            earrings={earrings}
+            eyebrow={eyebrows}
             glasses={glasses}
-            hat={hat}
-            neckwear={neckwear}
             characterRandomize={characterRandomize}
           />
         </div>
 
         <div>
           <div className="list-section">
-            {partsArray.map((part) => (
-              <div key={part.partName}>
-                <h2>{part.partName}</h2>
-                <PartList
-                  selectedPart={eval(part.partName)}
-                  partName={part.partName}
-                  setPart={
-                    part.partName === "body"
-                      ? setBody
-                      : part.partName === "clothing1"
-                      ? setClothing1
-                      : part.partName === "clothing2"
-                      ? setClothing2
-                      : part.partName === "clothing3"
-                      ? setClothing3
-                      : part.partName === "mouth"
-                      ? setMouth
-                      : part.partName === "nose"
-                      ? setNose
-                      : part.partName === "eyes"
-                      ? setEyes
-                      : part.partName === "eyebrows"
-                      ? setEyebrows
-                      : part.partName === "hair"
-                      ? setHair
-                      : part.partName === "facial"
-                      ? setFacial
-                      : part.partName === "earrings"
-                      ? setEarrings
-                      : part.partName === "glasses"
-                      ? setGlasses
-                      : part.partName === "hat"
-                      ? setHat
-                      : setNeckwear
-                  }
-                  amount={part.amount}
-                />
-              </div>
-            ))}
+            <h2>Body</h2>
+            <PartList
+              total={total.body}
+              path="body"
+              set={setBody}
+              selected={body}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Eyes</h2>
+            <PartList
+              total={total.eyes}
+              path="eyes"
+              set={setEyes}
+              selected={eyes}
+              zoom={2.5}
+              top="35px"
+            />
+          </div>
+          <div className="list-section">
+            <h2>Hair</h2>
+            <PartList
+              total={total.hair}
+              path="hair"
+              set={setHair}
+              selected={hair}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Mouth</h2>
+            <PartList
+              total={total.mouth}
+              path="mouths"
+              set={setMouth}
+              selected={mouth}
+              zoom={2}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Eyebrows</h2>
+            <PartList
+              total={total.eyebrows}
+              path="eyebrows"
+              set={setEyebrow}
+              selected={eyebrows}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Glasses</h2>
+            <PartList
+              total={total.glasses}
+              path="accessories/glasses"
+              set={setGlasses}
+              selected={glasses}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Clothing (L1)</h2>
+            <PartList
+              total={total.clothing1}
+              path="clothes/layer_1"
+              set={setClothing1}
+              selected={clothing1}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Clothing (L2)</h2>
+            <PartList
+              total={total.clothing2}
+              path="clothes/layer_2"
+              set={setClothing2}
+              selected={clothing2}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Clothing (L3)</h2>
+            <PartList
+              total={total.clothing3}
+              path="clothes/layer_3"
+              set={setClothing3}
+              selected={clothing3}
+              zoom={2}
+              top="-15px"
+            />
           </div>
         </div>
       </div>
