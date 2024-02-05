@@ -44,7 +44,7 @@ function Avatar({
         <Items partName={"eyes"} index={eyes} zIndex={2}></Items>
         <Items partName={"eyebrows"} index={eyebrows} zIndex={2}></Items>
         <Items partName={"hair"} index={hair} zIndex={3}></Items>
-        <Items partName={"facial_hair"} index={facial} zIndex={2}></Items>
+        <Items partName={"facial_hair"} index={facial} zIndex={4}></Items>
 
         <Items
           partName={"accessories/earrings"}

@@ -14,6 +14,10 @@ const total = {
   clothing1: 5,
   clothing2: 5,
   clothing3: 9,
+  earrings: 32,
+  hats: 28,
+  neckwear: 18,
+  facial: 17,
 };
 
 function App() {
@@ -26,6 +30,12 @@ function App() {
   const [clothing3, setClothing3] = useState(1);
   const [mouth, setMouth] = useState(1);
   const [glasses, setGlasses] = useState(1);
+  const [nose, setNose] = useState(1);
+  const [earrings, setEarrings] = useState(1);
+  const [hat, setHat] = useState(1);
+  const [neckwear, setNeckwear] = useState(1);
+  const [facial, setFacial] = useState(1);
+
   const characterRandomize = () => {
     setBody(Math.floor(Math.random() * total.body));
     setEyes(Math.floor(Math.random() * total.eyes));
@@ -37,6 +47,10 @@ function App() {
     setClothing1(Math.floor(Math.random() * total.clothing1));
     setClothing2(Math.floor(Math.random() * total.clothing2));
     setClothing3(Math.floor(Math.random() * total.clothing3));
+    setEarrings(Math.floor(Math.random() * total.earings));
+    setHat(Math.floor(Math.random() * total.hat));
+    setNeckwear(Math.floor(Math.random() * total.neckwear));
+    setFacial(Math.floor(Math.random() * total.facial));
   };
 
   useEffect(() => {
@@ -61,6 +75,11 @@ function App() {
             mouth={mouth}
             eyebrow={eyebrows}
             glasses={glasses}
+            nose={nose}
+            earrings={earrings}
+            neckwear={neckwear}
+            hat={hat}
+            facial={facial}
             characterRandomize={characterRandomize}
           />
         </div>
@@ -124,7 +143,45 @@ function App() {
             />
           </div>
           <div className="list-section">
-            <h2>Clothing (L1)</h2>
+            <h2>Earrings</h2>
+            <PartList
+              total={total.earrings}
+              path="accessories/earrings"
+              set={setEarrings}
+              selected={earrings}
+              zoom={1.5}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Hat</h2>
+            <PartList
+              total={total.hat}
+              path="accessories/hats"
+              set={setHat}
+              selected={hat}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Neckwear</h2>
+            <PartList
+              total={total.neckwear}
+              path="accessories/neckwear"
+              set={setNeckwear}
+              selected={neckwear}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Facial Hair</h2>
+            <PartList
+              total={total.facial}
+              path="facial_hair"
+              set={setFacial}
+              selected={facial}
+              zoom={1.5}
+            />
+          </div>
+          <div className="list-section">
+            <h2>Clothing 1</h2>
             <PartList
               total={total.clothing1}
               path="clothes/layer_1"
@@ -133,7 +190,7 @@ function App() {
             />
           </div>
           <div className="list-section">
-            <h2>Clothing (L2)</h2>
+            <h2>Clothing 2</h2>
             <PartList
               total={total.clothing2}
               path="clothes/layer_2"
@@ -142,7 +199,7 @@ function App() {
             />
           </div>
           <div className="list-section">
-            <h2>Clothing (L3)</h2>
+            <h2>Clothing 3</h2>
             <PartList
               total={total.clothing3}
               path="clothes/layer_3"
