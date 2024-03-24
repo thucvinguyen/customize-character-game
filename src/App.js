@@ -18,6 +18,7 @@ const total = {
   hats: 28,
   neckwear: 18,
   facial: 17,
+  nose: 1,
 };
 
 function App() {
@@ -42,7 +43,6 @@ function App() {
     setEyebrow(Math.floor(Math.random() * total.eyebrows));
     setHair(Math.floor(Math.random() * total.hair));
     setMouth(Math.floor(Math.random() * total.mouth));
-    setMouth(Math.floor(Math.random() * total.mouth));
     setGlasses(Math.floor(Math.random() * total.glasses));
     setClothing1(Math.floor(Math.random() * total.clothing1));
     setClothing2(Math.floor(Math.random() * total.clothing2));
@@ -51,6 +51,8 @@ function App() {
     setHat(Math.floor(Math.random() * total.hat));
     setNeckwear(Math.floor(Math.random() * total.neckwear));
     setFacial(Math.floor(Math.random() * total.facial));
+    // setNose(Math.floor(Math.random() * total.nose));
+    setNose(1);
   };
 
   useEffect(() => {
@@ -124,6 +126,16 @@ function App() {
               zoom={2}
             />
           </div>
+          {/* <div className="list-section">
+            <h2>Nose</h2>
+            <PartList
+              total={total.nose}
+              path="noses"
+              set={setNose}
+              selected={nose}
+              zoom={2}
+            />
+          </div> */}
           <div className="list-section">
             <h2>Eyebrows</h2>
             <PartList
